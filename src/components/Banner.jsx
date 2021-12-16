@@ -24,7 +24,7 @@ const Banner = () => {
             justifyContent: "space-between",
             position: "absolute",
             bottom: "9vh",
-            left: "46.5%",
+            left: "45%",
           }}
         >
           {" "}

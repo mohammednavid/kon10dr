@@ -4,13 +4,15 @@ import SideNav from "./SideNav";
 
 const NavBar = () => {
   const [menu, setMenu] = useState(false);
-  const [matches, setMatches] = useState();
+  const [matches, setMatches] = useState(
+    window.matchMedia("(min-width: 768px)").matches
+  );
 
   useEffect(() => {
     window
       .matchMedia("(min-width: 901px)")
       .addEventListener("change", (e) => setMatches(e.matches));
-  }, []);
+  }, [matches]);
 
   return (
     <>
@@ -44,8 +46,7 @@ const NavBar = () => {
           </div>
         </div>
       </nav>
-      {menu && <SideNav />}
-      {matches && <SideNav />}
+      {(menu || matches) && <SideNav />}
     </>
   );
 };
