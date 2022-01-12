@@ -38,21 +38,27 @@ const NavBar = () => {
             <input type="text" placeholder="Search here..." />
           </div>
           <div className="navbar_right">
-            <a href="#" className="navbar_login" onClick={() =>setLogin(true)}>
+            <a href="#" className="navbar_login" onClick={() => setLogin(true)}>
               Login
             </a>
-            <a href="#" className="navbar_signup" onClick={() =>setSignup(true)}>
+            <a
+              href="#"
+              className="navbar_signup"
+              onClick={() => setSignup(true)}
+            >
               Sign Up
             </a>
             {menu ? (
               <i className="bi bi-x-lg" onClick={() => setMenu(false)}></i>
             ) : (
-              <i className="bi bi-list" onClick={() => setMenu(!menu)}></i>
+              <i className="bi bi-list" onClick={() => setMenu(true)}></i>
             )}
           </div>
         </div>
       </nav>
-      {(menu || matches) && <SideNav />}
+      {/* <div style={{ position: "fixed" }}> */}
+        <SideNav menu={menu} />
+      {/* </div> */}
     </>
   );
 };
