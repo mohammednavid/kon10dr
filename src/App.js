@@ -1,16 +1,18 @@
+import { useState } from "react";
 import "./App.scss";
 import Banner from "./components/Banner";
 import Card from "./components/Card";
 import Footer from "./components/Footer";
+import Login from "./components/Login";
 import NavBar from "./components/NavBar";
 import { fakeData1, fakeData2 } from "./fakeData";
 
 function App() {
+
   return (
     <>
       <NavBar />
       <Banner />
-
       <div className="container">
         <div className="title_container">
           <h1 className="title">Popular Tournaments</h1>

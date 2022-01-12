@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import "../styles/NavBar.scss";
+import Login from "./Login";
 import SideNav from "./SideNav";
+import Signup from "./Signup";
 
 const NavBar = () => {
   const [menu, setMenu] = useState(false);
   const [matches, setMatches] = useState(
     window.matchMedia("(min-width: 768px)").matches
   );
+  const [login, setLogin] = useState(false);
+  const [signup, setSignup] = useState(false);
 
   useEffect(() => {
     window
@@ -16,6 +20,8 @@ const NavBar = () => {
 
   return (
     <>
+      {login && <Login login={login} setLogin={setLogin} />}
+      {signup && <Signup signup={signup} setSignup={setSignup} />}
       <nav className="navbar">
         <div className="navbar_container">
           <ul className="navbar_left">
@@ -32,10 +38,10 @@ const NavBar = () => {
             <input type="text" placeholder="Search here..." />
           </div>
           <div className="navbar_right">
-            <a href="#" className="navbar_login">
+            <a href="#" className="navbar_login" onClick={() =>setLogin(true)}>
               Login
             </a>
-            <a href="#" className="navbar_signup">
+            <a href="#" className="navbar_signup" onClick={() =>setSignup(true)}>
               Sign Up
             </a>
             {menu ? (
