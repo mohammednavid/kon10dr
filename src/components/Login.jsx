@@ -8,7 +8,7 @@ const Login = ({login,setLogin}) => {
       <i className="bi bi-x-lg close" onClick={() => setLogin(false)}></i>
         <h1 className="title">Login in to your KON10DR account</h1>
         <p className="descp">
-          Don’t have an account? <span className="type">LOGIN</span>
+          Don’t have an account? <span className="type">Signup</span>
         </p>
         <br />
         <button className="google">
