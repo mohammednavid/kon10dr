@@ -4,6 +4,10 @@
   background: #353535;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
   z-index: 102;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   .navbar_container {
     height: 56px;
     // max-width: 1440px;
@@ -104,10 +108,11 @@
         color: #fafafa;
         text-decoration: none;
         display: flex;
+        text-align: center;
         justify-content: center;
         align-items: center;
         text-decoration: none;
-        width: 76px;
+        min-width: 70px;
         height: 32px;
         border-radius: 2px;
         margin: 0 10px;
@@ -121,18 +126,18 @@
       .navbar_signup {
         background: #0071bd;
       }
-      i{
+      i {
         cursor: pointer;
         font-size: 22px;
         z-index: 10001;
         @media screen and (min-width: 601px) {
-          margin:0 20px;
+          margin: 0 20px;
         }
         @media screen and (min-width: 901px) {
           display: none;
         }
       }
-      .bi-x-lg{
+      .bi-x-lg {
         font-size: 18px;
         margin-left: -8px;
       }

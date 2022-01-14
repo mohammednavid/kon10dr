@@ -1,6 +1,6 @@
 import "../styles/SideNav.scss";
 
-const SideNav = ({ menu }) => {
+const SideNav = ({ menu,setMenu }) => {
   return (
     // <div className={`${menu ? "menu_open" : "menu_close"}`}>
     <div className={`${menu ? "sidenav_container" : "sidenav_close"}`}>
@@ -31,6 +31,7 @@ const SideNav = ({ menu }) => {
         <li className="sidenav_link">Tournaments</li>
         <li className="sidenav_link">Search</li>
       </ul>
+      {/* <i className="bi bi-x-lg close" onClick={()=>setMenu(false)}></i> */}
     </div>
     // </div>
   );

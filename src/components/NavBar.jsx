@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { supabase } from "../client";
 import "../styles/NavBar.scss";
 import Login from "./Login";
 import SideNav from "./SideNav";
@@ -18,10 +19,35 @@ const NavBar = () => {
       .addEventListener("change", (e) => setMatches(e.matches));
   }, [matches]);
 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    /* when the app loads, check to see if the user is signed in */
+    checkUser();
+    /* check user on OAuth redirect */
+    window.addEventListener("hashchange", function () {
+      checkUser();
+    });
+  }, [user,supabase.auth.user()]);
+
+  async function checkUser() {
+    /* if a user is signed in, update local state */
+    const user = supabase.auth.user();
+    setUser(user);
+  }
+  async function signOut() {
+    /* sign the user out */
+    await supabase.auth.signOut();
+    setUser(null);
+  }
   return (
     <>
-      {login && <Login login={login} setLogin={setLogin} />}
-      {signup && <Signup signup={signup} setSignup={setSignup} />}
+      {login && (
+        <Login login={login} setLogin={setLogin} setSignup={setSignup} />
+      )}
+      {signup && (
+        <Signup signup={signup} setSignup={setSignup} setLogin={setLogin} />
+      )}
       <nav className="navbar">
         <div className="navbar_container">
           <ul className="navbar_left">
@@ -38,16 +64,31 @@ const NavBar = () => {
             <input type="text" placeholder="Search here..." />
           </div>
           <div className="navbar_right">
-            <a href="#" className="navbar_login" onClick={() => setLogin(true)}>
-              Login
-            </a>
-            <a
-              href="#"
-              className="navbar_signup"
-              onClick={() => setSignup(true)}
-            >
-              Sign Up
-            </a>
+            {user ? (
+              <>
+                <h4 style={{ margin: "0 2%" }}>Hello, {user?.email}</h4>
+                <a href="#" className="navbar_signup" onClick={signOut}>
+                  Sign Out
+                </a>
+              </>
+            ) : (
+              <>
+                <a
+                  href="#"
+                  className="navbar_login"
+                  onClick={() => setLogin(true)}
+                >
+                  Login
+                </a>
+                <a
+                  href="#"
+                  className="navbar_signup"
+                  onClick={() => setSignup(true)}
+                >
+                  Sign Up
+                </a>
+              </>
+            )}
             {menu ? (
               <i className="bi bi-x-lg" onClick={() => setMenu(false)}></i>
             ) : (
@@ -57,7 +98,7 @@ const NavBar = () => {
         </div>
       </nav>
       {/* <div style={{ position: "fixed" }}> */}
-        <SideNav menu={menu} />
+      <SideNav menu={menu} setMenu={setMenu} />
       {/* </div> */}
     </>
   );
