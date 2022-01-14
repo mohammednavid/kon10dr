@@ -23,7 +23,6 @@ const Signup = ({ signup, setSignup, setLogin }) => {
     );
     if(user){
       setSignup(false)
-      alert(user.email)
     }
   };
   return (
